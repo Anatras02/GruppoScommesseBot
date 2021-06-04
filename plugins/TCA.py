@@ -8,7 +8,7 @@ from funzioni import giocatore_random, setta_scommessa
 
 
 @Client.on_message(
-    filters.command(["tira", "tira@GestoreScommesseGiochiBot", "tca"]) & filters.chat(chatScommesse) | filters.regex(
+    filters.command(["tira", "tca@GestoreScommesseGiochiBot", "tca"]) & filters.chat(chatScommesse) | filters.regex(
         r"^Tiro Con L'Arco 🏹$"))
 def tira(_, message):
     utente = str(message.from_user.id)
@@ -33,11 +33,11 @@ def tira(_, message):
 
 @Client.on_message(filters.command("stca"))
 def regolamento_tca(_, message):
-    message.reply("""👁‍🗨 <b>Tiro Con L'Arco</b> 🏹: <i>molto intuitivo e veloce</i>.\n I due <i>(o più)</i> 
-    giocatori, dopo aver precedentemente fatto apparire il messaggio del bot <u>utilizzando il comando o l'apposito 
-    bottone</u>, <b>tirano le tre frecce a disposizione</b>. <b>Chi totalizza il punteggio più alto vince</b>.\n 
-    <i>Il punteggio massimo ottenibile è 75 (3 tiri * 25 punti max l'uno)</i>\n <b>Si prega di non flooddare</b> <i>( 
-    premere ripetutamente in un breve lasso di tempo)</i> <b>il bottone sotto il messaggio del bot, per evitare 
+    message.reply("""👁‍🗨 <b>Tiro Con L'Arco</b> 🏹: <i>molto intuitivo e veloce</i>.\n I due <i>(o più)</i>
+    giocatori, dopo aver precedentemente fatto apparire il messaggio del bot <u>utilizzando il comando o l'apposito
+    bottone</u>, <b>tirano le tre frecce a disposizione</b>. <b>Chi totalizza il punteggio più alto vince</b>.\n
+    <i>Il punteggio massimo ottenibile è 75 (3 tiri * 25 punti max l'uno)</i>\n <b>Si prega di non flooddare</b> <i>(
+    premere ripetutamente in un breve lasso di tempo)</i> <b>il bottone sotto il messaggio del bot, per evitare
     malfunzionamenti</b>\n""")
 
 

@@ -6,8 +6,7 @@ from config.variabili import chatScommesse
 from funzioni import setta_scommessa
 
 
-@Client.on_message(
-    filters.command(["carte"]) & (filters.chat(chatScommesse) | filters.private) | filters.regex(r"^Carte 🃏$"))
+@Client.on_message(filters.command(["carte","carte@GestoreScommesseGiochiBot"]) & (filters.chat(chatScommesse) | filters.private) | filters.regex(r"^Carte 🃏$"))
 def carte(_, message):
     numero = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     seme = ["♣️", "♠️", "♦️", "♥️"]

@@ -4,7 +4,7 @@ from config.variabili import chatScommesse
 from funzioni import setta_scommessa
 
 
-@Client.on_message(filters.command(["freccette"]) & filters.chat(chatScommesse) | filters.regex(r"^Freccette 🎯$"))
+@Client.on_message(filters.command(["freccette","freccette@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(r"^Freccette 🎯$"))
 def freccette(app, message):
     risultato = app.send_dice(message.chat.id, "🎯", reply_to_message_id=message.message_id)
     setta_scommessa(message.from_user, f"Freccette", risultato.dice.value)

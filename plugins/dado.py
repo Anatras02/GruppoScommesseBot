@@ -7,7 +7,7 @@ from funzioni import aggiungi_punti, setta_scommessa
 import random
 
 
-@Client.on_message(filters.command(["dado"]) & filters.chat(chatScommesse) | filters.regex(r"^Dado 🎲$"))
+@Client.on_message(filters.command(["dado","dado@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(r"^Dado 🎲$"))
 def dado(app, message):
     rx = r'/dado\s+(\d+)'
     mo = re.match(rx, message.text)

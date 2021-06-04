@@ -6,7 +6,7 @@ from config.variabili import chatScommesse
 from funzioni import setta_scommessa
 
 
-@Client.on_message(filters.command("rune") & filters.chat(chatScommesse) | filters.regex(r"^Rune 🔮$"))
+@Client.on_message(filters.command(["rune","rune@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(r"^Rune 🔮$"))
 def rune(app, message):
     simboli = ["🌱", "🔥", "💧", "🌑"]
 
