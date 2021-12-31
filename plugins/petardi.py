@@ -69,7 +69,6 @@ def lancia_query(app, callback_query):
     frasi_effetto_perdita = [
         "Ti scoppia un petardo in mano, perdi tutte le dita della mano!\nSei costretto a scappare in pronto "
         "soccorso",
-
     ]
 
     codice = callback_query.data.split("|")[2]
@@ -140,8 +139,10 @@ def lancia_query(app, callback_query):
     else:
         tiratori_petardi[tag_utente]["terminato"] = True
 
+        frase = random.choice(frasi_effetto_perdita)
+        frase += f"\n\nIl petardo ti è esploso al turno numero **{numero_lanci + 1}**"
         callback_query.edit_message_text(
-            random.choice(frasi_effetto_perdita),
+            frase
         )
 
 
