@@ -40,7 +40,7 @@ def petardi(_, message):
 def regolamento_tca(_, message):
     message.reply(
         'Petardi 🧨.\nLe regole sono semplici.\n'
-        'Si tira a turni.(esempio:hai fatto un tiro,ora aspetti il compagno a fare anche lui il tiro,e cosi si continua.)\n\n💣'
+        'Si tira a turni.\n(Esempio: hai fatto un tiro,ora aspetti che il compagno faccia anche lui il tiro, e cosi via.)\n\n💣'
         'Si può fare fino a quanti tiri si vuole.\n'
         'Pero c’è il rischio che il petardo scoppi, se il petardo scoppia non si ottiene nessun punto 💣\n\n'
         '❌ Potete fermarvi quando volete per non rischiare che il petardo vi scoppi in mano ❌\n\n'
