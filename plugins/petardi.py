@@ -11,8 +11,10 @@ from funzioni import giocatore_random
 
 
 @Client.on_message(
-    filters.command(["petardi", "petardi@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(
-        r"^Petardi 💣$"))
+    filters.command(["petardi", "petardi@GestoreScommesseGiochiBot"]) &
+    filters.chat(chatScommesse) |
+    filters.regex(r"^Petardi 💣$")
+)
 def petardi(_, message):
     utente = str(message.from_user.id)
     codice = codice_func()
@@ -31,6 +33,20 @@ def petardi(_, message):
         f"{message.from_user.first_name} sei abbastanza na🅱️oletano da rischiare le dita per un po' di divertimento?",
         reply_markup=keyboard,
         quote=False
+    )
+
+
+@Client.on_message(filters.command("spetardi"))
+def regolamento_tca(_, message):
+    message.reply(
+        'Petardi 🧨.\nLe regole sono semplici.\n'
+        'Si tira a turni.(esempio:hai fatto un tiro,ora aspetti il compagno a fare anche lui il tiro,e cosi si continua.)\n\n💣'
+        'Si può fare fino a quanti tiri si vuole.\n'
+        'Pero c’è il rischio che il petardo scoppi, se il petardo scoppia non si ottiene nessun punto 💣\n\n'
+        '❌ Potete fermarvi quando volete per non rischiare che il petardo vi scoppi in mano ❌\n\n'
+        '🧨 Vince chi fa più punti o a chi esplode il petardo 🧨\n'
+        '⛔️ Se il primo giocatore ad aver tirato perde (e l\'altro è ancora in gioco) l\'altro deve per forza tirare, se non perde ha vinto altrimenti si andrà in pareggio ⛔\n\n'
+        'NB: Rivelate i punti a vinceda dopo che entrambi hanno finito per non avvantaggiare l\'altro concorrente")'
     )
 
 
@@ -96,8 +112,8 @@ def lancia_query(app, callback_query):
     else:
         probabilità = random.randint(20, 60)
 
-    if not tiratori_petardi[tag_utente]["terminato"] and (
-            not tiratori_petardi[tag_utente]["risultati"] or random.randint(1, 100) >= probabilità):
+    if not tiratori_petardi[tag_utente]["terminato"] and \
+            (not tiratori_petardi[tag_utente]["risultati"] or random.randint(1, 100) >= probabilità):
         numero = random.randint(1, 25)
 
         giocatore_random_var = giocatore_random(utente, callback_query.message.chat.id, app)
