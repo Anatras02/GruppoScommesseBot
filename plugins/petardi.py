@@ -45,8 +45,11 @@ def regolamento_tca(_, message):
         'Pero c’è il rischio che il petardo scoppi, se il petardo scoppia non si ottiene nessun punto 💣\n\n'
         '❌ Potete fermarvi quando volete per non rischiare che il petardo vi scoppi in mano ❌\n\n'
         '🧨 Vince chi fa più punti o a chi esplode il petardo 🧨\n'
-        '⛔️ Se il primo giocatore ad aver tirato perde (e l\'altro è ancora in gioco) l\'altro deve per forza tirare, se non perde ha vinto altrimenti si andrà in pareggio ⛔\n\n'
-        'NB: Rivelate i punti a vinceda dopo che entrambi hanno finito per non avvantaggiare l\'altro concorrente")'
+        '⛔️ Se il primo giocatore ad aver tirato perde (e l\'altro è ancora in gioco) l\'altro deve per forza tirare, '
+        'se non perde ha vinto altrimenti si andrà in pareggio\n'
+        'Nel caso il secondo giocatore non effettuasse il tiro è come se il petardo fosse esploso e quindi si va in pareggio ⛔'
+        'NB: Rivelate i punti a vinceda dopo che entrambi hanno finito per non avvantaggiare l\'altro concorrente")\n\n'
+        'Di default il gioco è modalità SECCA'
     )
 
 
