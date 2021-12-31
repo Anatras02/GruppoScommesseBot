@@ -39,7 +39,7 @@ def regolamento_tca(_, message):
     malfunzionamenti</b>\n""")
 
 
-@Client.on_callback_query()
+@Client.on_callback_query(group=-1)
 def tira_query(app, callback_query):
     if "tira" in callback_query.data:
         frasi_effetto = ["Hai lanciato una **freccia** che è andata **{punti}** metri lontana",
