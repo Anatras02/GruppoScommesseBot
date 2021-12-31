@@ -39,7 +39,8 @@ def petardi(_, message):
 @Client.on_message(filters.command("spetardi"))
 def regolamento_tca(_, message):
     message.reply(
-        'Petardi 🧨.\nLe regole sono semplici.\n'
+        '**Petardi 🧨**\n\n'
+        'Le regole sono semplici.\n'
         'Si tira a turni.\n(Esempio: hai fatto un tiro,ora aspetti che il compagno faccia anche lui il tiro, e cosi via.)\n\n💣'
         'Si può fare fino a quanti tiri si vuole.\n'
         'Pero c’è il rischio che il petardo scoppi, se il petardo scoppia non si ottiene nessun punto 💣\n\n'
