@@ -12,6 +12,7 @@ def tastiera(app, message):
                 ["Carte 🃏", "Tiro Con L'Arco 🏹"],
                 ["Testa o Croce 🌕", "Dado 🎲"],
                 ["Rune 🔮", "Freccette 🎯"],
+                ["Petardi 💣"],
                 ["Random ❓"],
                 ["Sorte 🐉", "/gruzzolo 💸"],
                 ["Statistiche 📊", "Chiudi ❌"]

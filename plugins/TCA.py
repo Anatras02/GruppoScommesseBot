@@ -2,14 +2,12 @@ from pykeyboard import InlineKeyboard
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton
 
-from config.variabili import chatScommesse, tiratori
+from config.variabili import chatScommesse, tiratori_tca
 from funzioni import *
 from funzioni import giocatore_random, setta_scommessa
 
 
-@Client.on_message(
-    filters.command(["tira", "tca@GestoreScommesseGiochiBot", "tca"]) & filters.chat(chatScommesse) | filters.regex(
-        r"^Tiro Con L'Arco 🏹$"))
+@Client.on_message(filters.command(["tira", "tca@GestoreScommesseGiochiBot", "tca"]) & filters.chat(chatScommesse) | filters.regex(r"^Tiro Con L'Arco 🏹$"))
 def tira(_, message):
     utente = str(message.from_user.id)
     codice = codice_func()
@@ -20,9 +18,9 @@ def tira(_, message):
         InlineKeyboardButton("Cancella Tiro ❌", callback_data=f"Cancella|{utente}|{codice}")
     )
 
-    tiratori[f"{utente}{codice}"] = dict()
-    tiratori[f"{utente}{codice}"]["tiro"] = 1
-    tiratori[f"{utente}{codice}"]["risultati"] = []
+    tiratori_tca[f"{utente}{codice}"] = dict()
+    tiratori_tca[f"{utente}{codice}"]["tiro"] = 1
+    tiratori_tca[f"{utente}{codice}"]["risultati"] = []
 
     message.reply(
         f"{message.from_user.first_name} clicca qui sotto per iniziare a tirare",
@@ -62,7 +60,7 @@ def tira_query(app, callback_query):
         utente = int(callback_query.data.split("|")[1])
         tag_utente = f"{utente}{codice}"
         try:
-            tiratori[tag_utente]
+            tiratori_tca[tag_utente]
         except KeyError:
             callback_query.answer("Il bot è stato riavviato mentre giocavi, rilancia il comando /tca")
             return
@@ -78,7 +76,7 @@ def tira_query(app, callback_query):
         giocatore_random_var = giocatore_random(utente, callback_query.message.chat.id, app)
         frase = random.choice(frasi_effetto).format(punti=numero, giocatore=giocatore_random_var)
 
-        tiratori[tag_utente]["risultati"].append(numero)
+        tiratori_tca[tag_utente]["risultati"].append(numero)
 
         keyboard = InlineKeyboard(row_width=1)
         keyboard.add(
@@ -87,13 +85,13 @@ def tira_query(app, callback_query):
 
         counter = 1
         tiri = ""
-        for tiro in tiratori[tag_utente]["risultati"]:
+        for tiro in tiratori_tca[tag_utente]["risultati"]:
             tiri += f"**Tiro {counter}:** __{tiro}__\n"
             counter += 1
 
         if counter > 3:
             giocatore = app.get_users(utente).first_name
-            tot_punti = sum(tiratori[tag_utente]["risultati"])
+            tot_punti = sum(tiratori_tca[tag_utente]["risultati"])
 
             if tot_punti < 15:
                 commento = "(un po' una merda)"
@@ -131,7 +129,7 @@ def tira_query(app, callback_query):
                     reply_markup=keyboard
                 )
 
-        tiratori[tag_utente]["tiro"] += 1
+        tiratori_tca[tag_utente]["tiro"] += 1
 
     elif "Cancella" in callback_query.data:
         utente = callback_query.data.split("|")[1]
