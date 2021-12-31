@@ -1,3 +1,5 @@
+import time
+
 from pykeyboard import InlineKeyboard
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
@@ -74,7 +76,29 @@ def lancia_query(app, callback_query):
             InlineKeyboardButton("Termina ❌", callback_data=f"termina|{utente}|{codice}")
         )
 
-        if not tiratori_petardi[tag_utente]["terminato"] and (not tiratori_petardi[tag_utente]["risultati"] or random.randint(1, 100) >= 30):
+        numero_lanci = len(tiratori_petardi[tag_utente]["risultati"])
+        if numero_lanci == 1:
+            probabilità = 5
+        elif numero_lanci == 2:
+            probabilità = 6
+        elif numero_lanci == 3:
+            if random.randint(1, 100) < 20:
+                probabilità = 50
+            else:
+                probabilità = 10
+        elif numero_lanci == 4:
+            probabilità = 15
+        elif numero_lanci == 5:
+            probabilità = random.randint(15, 30)
+        elif numero_lanci == 6:
+            probabilità = random.randint(20, 35)
+        elif 6 < numero_lanci < 10:
+            probabilità = random.randint(30, 40)
+        else:
+            probabilità = random.randint(10, 50)
+
+        if not tiratori_petardi[tag_utente]["terminato"] and (
+                not tiratori_petardi[tag_utente]["risultati"] or random.randint(1, 100) >= probabilità):
             numero = random.randint(1, 25)
 
             giocatore_random_var = giocatore_random(utente, callback_query.message.chat.id, app)
@@ -93,6 +117,8 @@ def lancia_query(app, callback_query):
                     tiri,
                     reply_markup=keyboard
                 )
+
+                time.sleep(0.1)
             except FloodWait:
                 callback_query.answer("Sì ma stai calmo dio cane")
 
