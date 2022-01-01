@@ -203,7 +203,7 @@ def punteggio_query(app, callback_query):
     tiri = f"Ecco il risultato del tuo divertimento malato {callback_query.from_user.username} 💣\n"
     if finito_male == "F":
         numero_lanci = len(tiratori_petardi[tag_utente]["risultati"])
-        tiri += f"__(Anche se il petardo ti è esploso al turno {numero_lanci + 1} ti vogliamo bene comunque)__\n\n"
+        tiri += f"__(Anche se il petardo ti è **ESPLOSO** al **turno {numero_lanci + 1}** ti vogliamo bene comunque)__\n\n"
 
     for punteggio in tiratori_petardi[tag_utente]["risultati"]:
         tiri += f"**Punteggio {counter}:** {punteggio}\n"
