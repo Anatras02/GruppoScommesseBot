@@ -11,7 +11,7 @@ from funzioni import giocatore_random
 
 
 @Client.on_message(
-    filters.command(["petardi", "petardi@GestoreScommesseGiochiBot"]) &
+    filters.command(["petardi", "petardi@GestoreScommesseGiochiBot", "botti", "napoletardi", "napolimerda"]) &
     filters.chat(chatScommesse) |
     filters.regex(r"^Petardi 💣$")
 )
@@ -116,7 +116,6 @@ def lancia_query(app, callback_query):
         probabilità = random.randint(35, 60)
     else:
         probabilità = random.randint(75, 100)
-
 
     if not tiratori_petardi[tag_utente]["terminato"] and \
             (not tiratori_petardi[tag_utente]["risultati"] or random.randint(1, 100) >= probabilità):
