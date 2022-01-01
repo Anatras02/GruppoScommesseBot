@@ -37,7 +37,7 @@ def petardi(_, message):
 
 
 @Client.on_message(filters.command("spetardi"))
-def regolamento_tca(_, message):
+def regolamento_petardi(_, message):
     message.reply(
         '**Petardi 🧨**\n'
         'Le regole sono semplici.\n\n'
@@ -47,7 +47,7 @@ def regolamento_tca(_, message):
         '❌ Potete fermarvi quando volete per non rischiare che il petardo vi scoppi in mano ❌\n\n'
         '🧨 Vince chi fa più punti o a chi esplode il petardo 🧨\n'
         '⛔️ Se il primo giocatore ad aver tirato perde (e l\'altro è ancora in gioco) l\'altro deve per forza tirare, '
-        'se non perde ha vinto altrimenti si andrà in pareggio\n'
+        'se non perde ha vinto altrimenti si andranno a comparare i punteggi ottenuti fino a quel turno\n'
         'Nel caso il secondo giocatore non effettuasse il tiro è come se il petardo fosse esploso e quindi si va in pareggio ⛔\n\n'
         'NB: Rivelate i punti a vinceda dopo che entrambi hanno finito per non avvantaggiare l\'altro concorrente")\n\n'
         'Di default il gioco è modalità SECCA'
