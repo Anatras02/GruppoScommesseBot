@@ -110,10 +110,13 @@ def lancia_query(app, callback_query):
         probabilità = random.randint(15, 25)
     elif numero_lanci == 6:
         probabilità = random.randint(20, 35)
-    elif 6 < numero_lanci < 10:
+    elif 6 < numero_lanci <= 10:
         probabilità = random.randint(30, 40)
+    elif 10 < numero_lanci < 20:
+        probabilità = random.randint(35, 60)
     else:
-        probabilità = random.randint(20, 60)
+        probabilità = random.randint(75, 100)
+
 
     if not tiratori_petardi[tag_utente]["terminato"] and \
             (not tiratori_petardi[tag_utente]["risultati"] or random.randint(1, 100) >= probabilità):
@@ -141,12 +144,18 @@ def lancia_query(app, callback_query):
             callback_query.answer("Sì ma stai calmo dio cane")
 
     else:
+        keyboard = InlineKeyboard(row_width=1)
+        keyboard.add(
+            InlineKeyboardButton("Mostra Punteggi ✌️", callback_data=f"punteggio|{utente}|{codice}|F"),
+        )
+
         tiratori_petardi[tag_utente]["terminato"] = True
 
         frase = random.choice(frasi_effetto_perdita)
         frase += f"\n\nIl petardo ti è esploso al turno numero **{numero_lanci + 1}**"
         callback_query.edit_message_text(
-            frase
+            frase,
+            reply_markup=keyboard
         )
 
 
@@ -154,6 +163,7 @@ def lancia_query(app, callback_query):
 def termina_query(app, callback_query):
     codice = callback_query.data.split("|")[2]
     utente = int(callback_query.data.split("|")[1])
+    tag_utente = f"{utente}{codice}"
 
     if callback_query.from_user.id != int(utente):
         callback_query.answer("Non si può più, F!")
@@ -161,11 +171,12 @@ def termina_query(app, callback_query):
 
     keyboard = InlineKeyboard(row_width=1)
     keyboard.add(
-        InlineKeyboardButton("Mostra Punteggi ✌️", callback_data=f"punteggio|{utente}|{codice}"),
+        InlineKeyboardButton("Mostra Punteggi ✌️", callback_data=f"punteggio|{utente}|{codice}|V"),
     )
 
+    numero_lanci = len(tiratori_petardi[tag_utente]["risultati"])
     callback_query.edit_message_text(
-        "Hai deciso di smettere di lanciare petardi!\nPremi il tasto sottostante per vedere quanti punti hai fatto",
+        f"Hai deciso di smettere di lanciare petardi al turno {numero_lanci}!\nPremi il tasto sottostante per vedere quanti punti hai fatto",
         reply_markup=keyboard
     )
 
@@ -174,7 +185,9 @@ def termina_query(app, callback_query):
 def punteggio_query(app, callback_query):
     codice = callback_query.data.split("|")[2]
     utente = int(callback_query.data.split("|")[1])
+    finito_male = callback_query.data.split("|")[3]
     tag_utente = f"{utente}{codice}"
+
     try:
         tiratori_petardi[tag_utente]
     except KeyError:
@@ -188,7 +201,11 @@ def punteggio_query(app, callback_query):
     counter = 1
     totale = 0
 
-    tiri = f"Ecco il risultato del tuo divertimento malato {callback_query.from_user.username} 💣\n\n"
+    tiri = f"Ecco il risultato del tuo divertimento malato {callback_query.from_user.username} 💣\n"
+    if finito_male == "F":
+        numero_lanci = len(tiratori_petardi[tag_utente]["risultati"])
+        tiri += f"__(Anche se il petardo ti è esploso al turno {numero_lanci + 1} ti vogliamo bene comunque)__\n\n"
+
     for punteggio in tiratori_petardi[tag_utente]["risultati"]:
         tiri += f"**Punteggio {counter}:** {punteggio}\n"
         counter += 1

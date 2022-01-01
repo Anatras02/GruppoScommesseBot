@@ -11,7 +11,7 @@ def ludopatia(app, message):
 
     giocatore1 = message.from_user.username
     giocatore2 = message.reply_to_message.from_user.username
-    inviati_json = api.get_history(fromPlayer=giocatore1, toPlayer=giocatore2)
+    inviati_json = api.get_history(fromPlayer=giocatore1, toPlayer=giocatore2, )
     storia = get_tot_storia_pagamento(inviati_json)
     inviati = storia[0]
     max_inviati = storia[1]
