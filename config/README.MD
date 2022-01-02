@@ -20,7 +20,8 @@ In questa cartella andranno inseriti i seguenti file
     admin: [int|str] = ["lista amministratori bot"]
     tokens: dict = "il contenuto di tokens.json""
     chatScommesse: [int|str] = ["i gruppi in cui il bot funziona"]
-    tiratori: dict = dict() # deve essere un dict vuoto
+    tiratori_tca = dict() # deve essere un dict vuoto
+    tiratori_petardi = dict() # deve essere un dict vuoto
   ```
 
 Una volta settati questi valori non dovrai più fare altro qui!
