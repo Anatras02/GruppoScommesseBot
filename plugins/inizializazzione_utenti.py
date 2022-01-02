@@ -66,8 +66,6 @@ def nuovo(app, message):
     else:
         query = Utente.select().where(Utente.id == utente_id)
         if query.exists():
-            paga = True
-            app.send_message("Anatras02", f"/paga {prezzo},{message.from_user.username}")
             Utente.update(utenteID=utente_id).execute()
     if paga:
         app.send_message("Anatras02", f"/paga {prezzo},{message.from_user.username}")
