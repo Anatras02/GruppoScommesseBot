@@ -18,7 +18,7 @@ In questa cartella andranno inseriti i seguenti file
 - variabili.py --> Contiene le variabili iniziali di configurazione
   ```python
     admin: [int|str] = ["lista amministratori bot"]
-    tokens: dict = "il contenuto di tokens.json""
+    tokens: dict = "il contenuto di tokens.json"
     chatScommesse: [int|str] = ["i gruppi in cui il bot funziona"]
     tiratori_tca = dict() # deve essere un dict vuoto
     tiratori_petardi = dict() # deve essere un dict vuoto
