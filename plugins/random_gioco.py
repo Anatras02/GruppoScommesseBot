@@ -1,4 +1,5 @@
 import random
+
 from pyrogram import Client, filters
 
 from config.variabili import chatScommesse
@@ -6,12 +7,13 @@ from config.variabili import chatScommesse
 
 @Client.on_message(filters.command("random") & filters.chat(chatScommesse) | filters.regex(r"^Random ❓$"))
 def gioco_random(_, message):
-    giochi = [("Carte","/carte"), ("Tiro Con L'Arco","/tca"), ("Freccette","/freccette"), ("Rune","/rune"), ("Dado","/dado")]
+    giochi = [("Carte", "/carte"), ("Tiro Con L'Arco", "/tca"), ("Freccette", "/freccette"), ("Rune", "/rune"),
+              ("Dado", "/dado"), ("Petardi", "petardi")]
     modalita = ["BO3", "Secca"]
 
     gioco_scelto = random.choice(giochi)
 
-    if gioco_scelto[0] == "Tiro Con L'Arco":
+    if gioco_scelto[0] in ["Tiro Con L'Arco", "Petardi"]:
         modalita_scelta = "Secca"
     else:
         modalita_scelta = random.choice(modalita)
