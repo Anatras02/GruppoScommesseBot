@@ -8,7 +8,7 @@ from config.variabili import chatScommesse
 @Client.on_message(filters.command("random") & filters.chat(chatScommesse) | filters.regex(r"^Random ❓$"))
 def gioco_random(_, message):
     giochi = [("Carte", "/carte"), ("Tiro Con L'Arco", "/tca"), ("Freccette", "/freccette"), ("Rune", "/rune"),
-              ("Dado", "/dado"), ("Petardi", "petardi")]
+              ("Dado", "/dado"), ("Petardi", "/petardi")]
     modalita = ["BO3", "Secca"]
 
     gioco_scelto = random.choice(giochi)
