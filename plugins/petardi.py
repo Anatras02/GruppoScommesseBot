@@ -16,6 +16,10 @@ from funzioni import giocatore_random
     filters.regex(r"^Petardi 💣$")
 )
 def petardi(_, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     utente = str(message.from_user.id)
     codice = codice_func()
 

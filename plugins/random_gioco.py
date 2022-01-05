@@ -7,6 +7,10 @@ from config.variabili import chatScommesse
 
 @Client.on_message(filters.command("random") & filters.chat(chatScommesse) | filters.regex(r"^Random ❓$"))
 def gioco_random(_, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     giochi = [("Carte", "/carte"), ("Tiro Con L'Arco", "/tca"), ("Freccette", "/freccette"), ("Rune", "/rune"),
               ("Dado", "/dado"), ("Petardi", "/petardi")]
     modalita = ["BO3", "Secca"]

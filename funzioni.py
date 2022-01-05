@@ -106,3 +106,4 @@ def get_tot_storia_pagamento(storia: [float]):
         max = 0
 
     return [tot, max]
+

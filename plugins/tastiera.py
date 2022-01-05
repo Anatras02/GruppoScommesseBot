@@ -4,6 +4,10 @@ from pyrogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
 @Client.on_message(filters.command(["tastiera"]))
 def tastiera(app, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     app.send_message(
         message.chat.id,  # Edit this
         "Ecco la tastiera con i giochi!",

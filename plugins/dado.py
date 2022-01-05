@@ -1,6 +1,6 @@
 import re
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, StopPropagation
 
 from config.variabili import chatScommesse
 from funzioni import aggiungi_punti, setta_scommessa
@@ -9,6 +9,10 @@ import random
 
 @Client.on_message(filters.command(["dado","dado@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(r"^Dado 🎲$"))
 def dado(app, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     rx = r'/dado\s+(\d+)'
     mo = re.match(rx, message.text)
     if mo:

@@ -6,6 +6,10 @@ from funzioni import setta_scommessa
 
 @Client.on_message(filters.command(["freccette","freccette@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(r"^Freccette 🎯$"))
 def freccette(app, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     risultato = app.send_dice(message.chat.id, "🎯", reply_to_message_id=message.message_id)
     setta_scommessa(message.from_user, f"Freccette", risultato.dice.value)
 

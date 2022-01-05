@@ -9,6 +9,10 @@ from funzioni import giocatore_random, setta_scommessa
 
 @Client.on_message(filters.command(["tira", "tca@GestoreScommesseGiochiBot", "tca"]) & filters.chat(chatScommesse) | filters.regex(r"^Tiro Con L'Arco 🏹$"))
 def tira(_, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     utente = str(message.from_user.id)
     codice = codice_func()
 

@@ -8,6 +8,10 @@ from funzioni import setta_scommessa
 
 @Client.on_message(filters.command(["ToC"]) & filters.chat(chatScommesse) | filters.regex(r"^Testa o Croce 🌕$"))
 def toc(app, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+    
     testa_o_croce = ["TESTA", "CROCE"]
     risultato = random.choice(testa_o_croce)
     message.reply(

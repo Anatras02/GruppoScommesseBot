@@ -8,6 +8,10 @@ from funzioni import setta_scommessa
 
 @Client.on_message(filters.command(["rune","rune@GestoreScommesseGiochiBot"]) & filters.chat(chatScommesse) | filters.regex(r"^Rune 🔮$"))
 def rune(app, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     simboli = ["🌱", "🔥", "💧", "🌑"]
 
     simbolo = random.choice(simboli)

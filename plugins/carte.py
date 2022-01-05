@@ -1,6 +1,6 @@
 import random
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, StopPropagation
 
 from config.variabili import chatScommesse
 from funzioni import setta_scommessa
@@ -8,6 +8,10 @@ from funzioni import setta_scommessa
 
 @Client.on_message(filters.command(["carte","carte@GestoreScommesseGiochiBot"]) & (filters.chat(chatScommesse) | filters.private) | filters.regex(r"^Carte 🃏$"))
 def carte(_, message):
+    if message.chat.id not in chatScommesse:
+        message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
+        return
+
     numero = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     seme = ["♣️", "♠️", "♦️", "♥️"]
     flag = True
