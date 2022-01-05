@@ -11,7 +11,7 @@ from funzioni import giocatore_random
 
 
 @Client.on_message(
-    filters.command(["petardi", "petardi@GestoreScommesseGiochiBot", "botti", "napoletardi", "napolimerda"]) &
+    filters.command(["petardi", "petardi@GestoreScommesseGiochiBot", "botti", "napoletardi", "napolimerda"]) |
     filters.regex(r"^Petardi 💣$")
 )
 def petardi(_, message):
