@@ -6,7 +6,7 @@ from config.variabili import chatScommesse
 from funzioni import setta_scommessa
 
 
-@Client.on_message(filters.command(["carte","carte@GestoreScommesseGiochiBot"]) | filters.private) | filters.regex(r"^Carte 🃏$")
+@Client.on_message(filters.command(["carte","carte@GestoreScommesseGiochiBot"]) | filters.private | filters.regex(r"^Carte 🃏$"))
 def carte(_, message):
     if message.chat.id not in chatScommesse:
         message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")
