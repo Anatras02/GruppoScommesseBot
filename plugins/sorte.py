@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from config.variabili import chatScommesse
 
 
-@Client.on_message(filters.command(["sorte"]) & filters.chat(chatScommesse) | filters.regex(r"^Sorte 🐉$"))
+@Client.on_message(filters.command(["sorte"]) | filters.regex(r"^Sorte 🐉$"))
 def sorte(_, message):
     if message.chat.id not in chatScommesse:
         message.reply("Gruppo non abilitato, contatta @Anatras02 se credi si tratti di un errore")

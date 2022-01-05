@@ -6,7 +6,7 @@ from config.variabili import chatScommesse, admin
 from funzioni import get_soldi, aggiungi_punti, aggiorna_soldi
 
 
-@Client.on_message(filters.command("soldi") & (filters.chat(chatScommesse) | filters.private))
+@Client.on_message(filters.command("soldi") | filters.private)
 def soldi(_, message):
     soldi_var = get_soldi(message.from_user)
     soldi = f"{aggiungi_punti(soldi_var)}$"

@@ -1,6 +1,8 @@
 from pyrogram import Client, filters
 from pyrogram.types import ReplyKeyboardMarkup, ReplyKeyboardRemove
 
+from config.variabili import chatScommesse
+
 
 @Client.on_message(filters.command(["tastiera"]))
 def tastiera(app, message):
