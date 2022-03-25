@@ -1,9 +1,9 @@
 import os
+import random
 
-from peewee import fn
+from peewee import fn, IntegrityError
 
 from ORM.ScommesseORM import Utente, Scommessa
-import random
 
 
 def codice_func():
@@ -52,13 +52,13 @@ def is_utente(utente_id: int):
 
 
 def setta_utente(utente, invitato_da=None):
-    if not is_utente(utente.id):
+    try:
         if invitato_da is not None:
             invitato_da = Utente.select().where(id == invitato_da).get()
             return Utente.create(id=utente.id, username=utente.username, invitatoDa=invitato_da)
         else:
             return Utente.create(id=utente.id, username=utente.username)
-    else:
+    except IntegrityError:
         return Utente.update(username=utente.username).where(Utente.id == utente.id)
 
 
@@ -106,4 +106,3 @@ def get_tot_storia_pagamento(storia: [float]):
         max = 0
 
     return [tot, max]
-
